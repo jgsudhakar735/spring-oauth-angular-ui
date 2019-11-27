@@ -1,0 +1,25 @@
+<div id="sidebar">
+    <mat-nav-list>
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/user-management']">
+          <mat-icon class="sidenav-icon">person</mat-icon> User Mangement
+        </a>
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/role-management']">
+          <mat-icon class="sidenav-icon">games</mat-icon> Role Management
+        </a>
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/permission-management']">
+        <mat-icon class="sidenav-icon">supervised_user_circle</mat-icon> Permission Management
+        </a>
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/client-management']">
+          <mat-icon class="sidenav-icon">people</mat-icon> Client Management
+        </a>
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/dashboard']">
+            <mat-icon class="sidenav-icon">dashboard</mat-icon> {{ 'Dashboard' | translate }}
+        </a>
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/screen1']">
+            <mat-icon class="sidenav-icon">build</mat-icon> {{ 'Screen1' | translate }}
+        </a>
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/screen2']">
+            <mat-icon class="sidenav-icon">people</mat-icon> {{ 'Screen2' | translate }}
+        </a>
+    </mat-nav-list>
+</div>
