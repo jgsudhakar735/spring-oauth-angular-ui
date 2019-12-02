@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+        ReactiveFormsModule,
         LayoutModule,
         OverlayModule,
         HttpClientModule,

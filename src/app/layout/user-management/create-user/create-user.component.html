@@ -1,0 +1,39 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+        <mat-card-title fxLayoutAlign="center">Create New User</mat-card-title>
+
+        <form [formGroup]="userForm" autocomplete="off" novalidate (ngSubmit)="createUser(userForm.value)" fxLayout="column wrap"
+      fxLayoutAlign="center center" fxLayoutGap="10px" layout-align="space-between center">
+
+        <mat-card-content>
+            <mat-form-field  class="example-full-width">
+                <input matInput type="text" placeholder="User name" formControlName="name" id="name">
+                <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+                <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
+                <mat-error *ngIf="hasError('name', 'maxlength')">You have more than 60 characters</mat-error>
+              </mat-form-field>
+              <span>&#160;&#160;</span>
+              <mat-form-field  class="example-full-width">
+                  <input matInput type="email" placeholder="User E-Mail" formControlName="email" id="email">
+                  <mat-hint align="end">Not more then 100 characters long.</mat-hint>
+                  <mat-error *ngIf="hasError('email', 'required')">Email is required</mat-error>
+                  <mat-error *ngIf="hasError('email', 'maxlength')">You have more than 100 characters</mat-error>
+                </mat-form-field>
+              <span>&#160;&#160;</span>
+              <mat-form-field class="example-full-width">
+                  <mat-select formControlName="userStatus">
+                      <mat-option value="A">ACTIVE</mat-option>
+                      <mat-option value="I">IN-ACTIVE</mat-option>
+                  </mat-select>
+                  <mat-hint align="end">Choose User Stauts</mat-hint>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <mat-card-actions align="center">
+                <button mat-raised-button color="primary" [disabled]="!userForm.valid">Create</button>
+                <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+            </mat-card-actions>
+        </mat-card-actions>
+        </form>
+      </mat-card>
+  </section>

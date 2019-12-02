@@ -3,10 +3,12 @@ import { PermissionRoutingModule } from './permission-routing.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatButtonModule, MatCardModule, MatIconModule, MatTableModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatIconModule, MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 import { StatModule } from '../../shared/modules/stat/stat.module';
+import { CreatePermissionComponent } from './create-permission/create-permission.component';
+import { PermissionOperationComponent } from './permission-operation/permission-operation.component';
 
 @NgModule({
     imports: [
@@ -19,8 +21,13 @@ import { StatModule } from '../../shared/modules/stat/stat.module';
         MatTableModule,
         MatButtonModule,
         MatIconModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDialogModule,
         FlexLayoutModule.withConfig({addFlexToParent: false})
     ],
-    declarations: [PermissionManagementComponent]
+    declarations: [PermissionManagementComponent, CreatePermissionComponent, PermissionOperationComponent]
 })
 export class PermissionModule {}

@@ -1,0 +1,28 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.hide {
+  display: none;
+}
+.search-div {
+  margin: 10px;
+}
+.search-form-field {
+  width: 80%;
+  margin-left: 10px;
+  padding: 5px 10px;
+}
+.mat-row:nth-child(n+1){
+  background-color: #e4f0ec;
+}
+.mat-row:not(:nth-child(2n+1)){
+  background-color:#ffffff;
+}
+.mat-header-row {
+  background-color:cyan;
+}

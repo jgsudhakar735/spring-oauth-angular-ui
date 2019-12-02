@@ -16,10 +16,6 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { NavComponent } from './nav/nav.component';
 import { Screen2Component } from './screen2/screen2.component';
-import { UserManagementComponent } from './user-management/user-management.component';
-import { RoleManagementComponent } from './role-management/role-management.component';
-import { PermissionManagementComponent } from './permission-management/permission-management.component';
-import { ClientManagementComponent } from './client-management/client-management.component';
 
 @NgModule({
     imports: [
