@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 import { Screen1Component } from './screen1/screen1.component';
 import { Screen2Component } from './screen2/screen2.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 const routes: Routes = [
     {
@@ -16,7 +17,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'dashboard'
+                redirectTo: 'user-management'
             },
             {
                 path: 'dashboard',
@@ -45,6 +46,10 @@ const routes: Routes = [
             {
                 path: 'client-management',
                 loadChildren: './client-management/client.module#ClientModule'
+            },
+            {
+              path: 'access-denied',
+              component: AccessDeniedComponent
             }
         ]
     }

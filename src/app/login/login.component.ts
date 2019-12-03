@@ -13,6 +13,6 @@ export class LoginComponent implements OnInit {
 
     onLogin() {
         localStorage.setItem('isLoggedin', 'true');
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/user-management']);
     }
 }

@@ -10,6 +10,10 @@ const routes: Routes = [
         component: UserManagementComponent
     },
     {
+      path: 'user-management',
+      component: UserManagementComponent
+    },
+    {
       path: 'create-user',
       component: CreateUserComponent
     },

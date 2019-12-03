@@ -29,4 +29,6 @@ export interface UserDTO {
 
   // User Status
   active: string;
+
+  actions: string;
 }
