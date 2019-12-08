@@ -14,7 +14,8 @@ static userData: UserDTO[] = [
     active: 'Y',
     lastLoginDate: null,
     password: '',
-    email: 'govind@gmail.com'
+    email: 'govind@gmail.com',
+    actions: ''
   },
   {
     name: 'Jayamma',
@@ -26,7 +27,8 @@ static userData: UserDTO[] = [
     active: 'Y',
     lastLoginDate: null,
     password: '',
-    email: 'jayamma@gmail.com'
+    email: 'jayamma@gmail.com',
+    actions: ''
   },
   {
     name: 'Sudhakar',
@@ -38,7 +40,8 @@ static userData: UserDTO[] = [
     active: 'Y',
     lastLoginDate: null,
     password: '',
-    'email': 'jgsudhakar735@gmail.com'
+    email: 'jgsudhakar735@gmail.com',
+    actions: ''
   },
   {
     name: 'Sailaja',
@@ -50,7 +53,8 @@ static userData: UserDTO[] = [
     active: 'Y',
     lastLoginDate: null,
     password: '',
-    'email': 'sailu@gmail.com'
+    email: 'sailu@gmail.com',
+    actions: ''
   },
   {
     name: 'Sriyaan',
@@ -62,7 +66,8 @@ static userData: UserDTO[] = [
     active: 'Y',
     lastLoginDate: null,
     password: '',
-    'email': 'sriyaan@gmail.com'
+    email: 'sriyaan@gmail.com',
+    actions: ''
   },
   {
     name: 'Sanvi',
@@ -74,7 +79,8 @@ static userData: UserDTO[] = [
     active: 'Y',
     lastLoginDate: null,
     password: '',
-    'email': 'sanvi@gmail.com'
+    email: 'sanvi@gmail.com',
+    actions: ''
   },
   {
     name: 'Venkateswarlu',
@@ -86,23 +92,24 @@ static userData: UserDTO[] = [
     active: 'Y',
     lastLoginDate: null,
     password: '',
-    'email': 'chinna@gmail.com'
+    email: 'chinna@gmail.com',
+    actions: ''
   }
 ];
 
 static roleData: RoleDTO[] = [
-  { id: 1, name: 'Admin', desc: 'Role with Full Access' },
-  { id: 2, name: 'Operator', desc: 'Role with limited Access' },
-  { id: 3, name: 'User', desc: 'Role with Create Access' },
-  { id: 4, name: 'Infra', desc: 'Role With IT Module Access' },
-  { id: 5, name: 'Network', desc: 'Role with Network Access' },
+  { roleId: 1, name: 'Admin', description: 'Role with Full Access' , action: ''},
+  { roleId: 2, name: 'Operator', description: 'Role with limited Access', action: '' },
+  { roleId: 3, name: 'User', description: 'Role with Create Access', action: '' },
+  { roleId: 4, name: 'Infra', description: 'Role With IT Module Access', action: '' },
+  { roleId: 5, name: 'Network', description: 'Role with Network Access', action: '' },
 ];
 
 static permissionData: PermissionDTO[] = [
-  { id: 1, name: 'CREATE', desc: 'Permission to Create A Record' },
-  { id: 2, name: 'UPDATE', desc: 'Permission to Update A Record' },
-  { id: 3, name: 'DELETE', desc: 'Permission to Delete A Record' },
-  { id: 4, name: 'READ', desc: 'Permission to Read A Record' }
+  { permissionId: 1, name: 'CREATE', description: 'Permission to Create A Record', action: '' },
+  { permissionId: 2, name: 'UPDATE', description: 'Permission to Update A Record', action: '' },
+  { permissionId: 3, name: 'DELETE', description: 'Permission to Delete A Record', action: '' },
+  { permissionId: 4, name: 'READ', description: 'Permission to Read A Record', action: '' }
 ];
 
 static clientsData: ClientDetailsDTO[] = [
@@ -164,5 +171,9 @@ static clientsData: ClientDetailsDTO[] = [
   }
 ];
 
-static jwtToken: string ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6IlN1ZGhha2FyIiwiYXVkIjpbIlJFU09VUkNFX0lEIl0sInVzZXJfbmFtZSI6IlNhbnZpIiwic2NvcGUiOlsiUkVBRCIsIldSSVRFIl0sImV4cCI6MTU3NTIwMDY3NiwiYWNjZXNzVG9rZW5FeHBpcnlJblNlYyI6MzU5OSwiYXV0aG9yaXRpZXMiOlsiUkVBRCIsIlJPTEVfVVNFUiJdLCJqdGkiOiIwOWExMWM1Mi01YzE4LTQ4MTAtYTMxNC03NWYyMDRiNzlhNWYiLCJjbGllbnRfaWQiOiJtb2JpbGUifQ.N1cxGe9KekqscpI3l40VrTNj7izDYVku2AOk1V_13DM';
+// tslint:disable-next-line:max-line-length
+static jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6IlN1ZGhha2FyIiwiYXVkIjpbIlJFU09VUkNFX0lEIl0sInVzZXJfbmFtZSI6IlNhbnZpIiwic2NvcGUiOlsiUkVBRCIsIldSSVRFIl0sImV4cCI6MTU3NTIwMDY3NiwiYWNjZXNzVG9rZW5FeHBpcnlJblNlYyI6MzU5OSwiYXV0aG9yaXRpZXMiOlsiUkVBRCIsIlJPTEVfVVNFUiJdLCJqdGkiOiIwOWExMWM1Mi01YzE4LTQ4MTAtYTMxNC03NWYyMDRiNzlhNWYiLCJjbGllbnRfaWQiOiJtb2JpbGUifQ.N1cxGe9KekqscpI3l40VrTNj7izDYVku2AOk1V_13DM';
+
+static clientBasicAuthCode = 'Basic bW9iaWxlOm1waW4=';
+
 }

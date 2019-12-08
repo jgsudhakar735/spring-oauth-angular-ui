@@ -1,3 +1,6 @@
+import { CommonErrorInterceptorService } from './shared/services/common-error-interceptor.service';
+import { CommonInterceptorService } from './shared/services/common-interceptor.service';
+import { CommonHttpService } from './shared/services/common-http.service';
 import { LayoutModule } from '@angular/cdk/layout';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
@@ -6,17 +9,20 @@ import {
     MatIconModule,
     MatListModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSnackBarModule
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ToastMessageComponent } from './toast-message/toast-message.component';
+import { UrlConfigService } from './shared/services/url-config.service';
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
     /* for development
@@ -29,15 +35,17 @@ export const createTranslateLoader = (http: HttpClient) => {
 };
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, ToastMessageComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
         LayoutModule,
+        HttpClientModule,
         OverlayModule,
         HttpClientModule,
+        MatSnackBarModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -46,7 +54,20 @@ export const createTranslateLoader = (http: HttpClient) => {
             }
         })
     ],
-    providers: [],
+    providers: [
+      CommonHttpService,
+      UrlConfigService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: CommonInterceptorService
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CommonErrorInterceptorService,
+      multi: true ,
+    }
+],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

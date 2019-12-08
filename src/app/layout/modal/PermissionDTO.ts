@@ -1,8 +1,10 @@
 export interface PermissionDTO {
 
-  id: number;
+  permissionId: number;
 
   name: string;
 
-  desc: string;
+  description: string;
+
+  action: string;
 }

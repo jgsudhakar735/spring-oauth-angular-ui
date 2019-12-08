@@ -1,3 +1,4 @@
+import { Constants } from './../stubdata/Constants';
 import { JwtTokenService } from './../token/jwt-token.service';
 import { Component, OnInit } from '@angular/core';
 import { LayoutModule } from '../layout.module';
@@ -10,10 +11,10 @@ import { MatDialogRef } from '@angular/material';
 export class AccessDeniedComponent implements OnInit {
 
   name;
-  constructor(private jwtService: JwtTokenService,private dialogRef: MatDialogRef<AccessDeniedComponent>) { }
+  constructor(private jwtService: JwtTokenService, private dialogRef: MatDialogRef<AccessDeniedComponent>) { }
 
   ngOnInit() {
-    this.name = this.jwtService.getToken().user_name;
+    this.name = this.jwtService.getToken(Constants.jwtToken).user_name;
   }
   onClick() {
     this.dialogRef.close();

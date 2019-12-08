@@ -1,3 +1,4 @@
+import { UserIfaceImplService } from './impl/user-iface-impl.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { UserRoutingModule } from './user-routing.module';
@@ -31,6 +32,9 @@ import { UserOperationComponent } from './user-operation/user-operation.componen
         MatDialogModule,
         ReactiveFormsModule,
         FlexLayoutModule.withConfig({addFlexToParent: false})
+    ],
+    providers: [
+      UserIfaceImplService
     ],
     declarations: [UserManagementComponent, CreateUserComponent, UserOperationComponent]
 })

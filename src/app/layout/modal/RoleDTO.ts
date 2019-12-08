@@ -1,8 +1,10 @@
 export interface RoleDTO {
 
-  id: number;
+  roleId: number;
 
   name: string;
 
-  desc: string;
+  description: string;
+
+  action: string;
 }

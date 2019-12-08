@@ -1,1 +1,34 @@
-<p>role-operation works!</p>
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+        <mat-card-title fxLayoutAlign="center">Role Details</mat-card-title>
+
+        <form [formGroup]="roleForm" autocomplete="off" novalidate (ngSubmit)="processData(roleForm.value)" fxLayout="column wrap"
+      fxLayoutAlign="center center" fxLayoutGap="10px" layout-align="space-between center">
+
+        <mat-card-content>
+            <mat-form-field  class="example-full-width">
+                <input matInput type="text" placeholder="Role Name" formControlName="name" id="name" [(ngModel)]="data.roleData.name" readonly>
+                <input matInput hidden='true' formControlName="roleId" id="roleId" [(ngModel)]="data.roleData.roleId" readonly>
+                <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+                <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
+                <mat-error *ngIf="hasError('name', 'maxlength')">You have more than 60 characters</mat-error>
+              </mat-form-field>
+              <span>&#160;&#160;</span>
+              <mat-form-field  class="example-full-width">
+                  <input matInput type="text" placeholder="Role Description" formControlName="roleDesc" id="roleDesc" [(ngModel)]="data.roleData.description">
+                  <mat-hint align="end">Not more then 100 characters long.</mat-hint>
+                  <mat-error *ngIf="hasError('roleDesc', 'required')">Role Description required</mat-error>
+                  <mat-error *ngIf="hasError('roleDesc', 'maxlength')">You have more than 100 characters</mat-error>
+                </mat-form-field>
+              <span>&#160;&#160;</span>
+        </mat-card-content>
+        <mat-card-actions>
+            <mat-card-actions align="center">
+                <button mat-raised-button color="primary" [disabled]="!roleForm.valid" *ngIf = "operationType === 'Delete'">Delete</button>
+                <button mat-raised-button color="primary" [disabled]="!roleForm.valid" *ngIf = "operationType === 'Edit'">Update</button>
+                <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+            </mat-card-actions>
+        </mat-card-actions>
+        </form>
+      </mat-card>
+  </section>

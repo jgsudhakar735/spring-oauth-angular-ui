@@ -1,3 +1,4 @@
+import { JwtTokenService } from './../../token/jwt-token.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,8 +10,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TopnavComponent implements OnInit {
     public pushRightClass: string;
+    loggedInUserName = this.jwtService.userName;
 
-    constructor(public router: Router, private translate: TranslateService) {
+    constructor(public router: Router, private translate: TranslateService, private jwtService: JwtTokenService) {
         this.router.events.subscribe(val => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
                 this.toggleSidebar();
@@ -34,6 +36,15 @@ export class TopnavComponent implements OnInit {
 
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        this.jwtService.hasAccessToAdd = false;
+        this.jwtService.hasAccessToEdit = false;
+        this.jwtService.hasAccessToDelete = false;
+        this.jwtService.hasAccessToView = false;
+        this.jwtService.userName = '';
+        this.jwtService.accessToken = '';
+        this.jwtService.refreshToken = '';
         this.router.navigate(['/login']);
     }
 

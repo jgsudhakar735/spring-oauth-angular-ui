@@ -1,3 +1,5 @@
+import { PermissionIfaceImplService } from './impl/permission-iface-impl.service';
+import { ReactiveFormsModule } from '@angular/forms';
 import { PermissionManagementComponent } from './permission-management.component';
 import { PermissionRoutingModule } from './permission-routing.module';
 import { CommonModule } from '@angular/common';
@@ -26,7 +28,11 @@ import { PermissionOperationComponent } from './permission-operation/permission-
         MatFormFieldModule,
         MatInputModule,
         MatDialogModule,
+        ReactiveFormsModule,
         FlexLayoutModule.withConfig({addFlexToParent: false})
+    ],
+    providers: [
+      PermissionIfaceImplService
     ],
     declarations: [PermissionManagementComponent, CreatePermissionComponent, PermissionOperationComponent]
 })

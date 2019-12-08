@@ -1,3 +1,4 @@
+import { RoleIfaceImplService } from './impl/role-iface-impl.service';
 import { RoleManagementComponent } from './role-management.component';
 import { RoleRoutingModule } from './role-routing.module';
 import { CommonModule } from '@angular/common';
@@ -10,6 +11,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { StatModule } from '../../shared/modules/stat/stat.module';
 import { CreateRoleComponent } from './create-role/create-role.component';
 import { RoleOperationComponent } from './role-operation/role-operation.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -27,7 +29,11 @@ import { RoleOperationComponent } from './role-operation/role-operation.componen
         MatFormFieldModule,
         MatInputModule,
         MatDialogModule,
+        ReactiveFormsModule,
         FlexLayoutModule.withConfig({addFlexToParent: false})
+    ],
+    providers: [
+      RoleIfaceImplService
     ],
     declarations: [RoleManagementComponent, CreateRoleComponent, RoleOperationComponent]
 })

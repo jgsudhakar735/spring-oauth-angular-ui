@@ -1,3 +1,4 @@
+import { ToastMessageComponent } from './toast-message/toast-message.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './shared/guard/auth.guard';
@@ -11,6 +12,11 @@ const routes: Routes = [
     {
         path: 'login',
         loadChildren: './login/login.module#LoginModule'
+    },
+    {
+      path: 'toast-message',
+      component: ToastMessageComponent
+
     }
 ];
 

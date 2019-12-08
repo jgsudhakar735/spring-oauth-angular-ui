@@ -16,10 +16,11 @@ export class CreateUserComponent implements OnInit {
     this.userForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(60)]),
       email: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.email]),
-      userStatus: new FormControl('', [Validators.required])
+      userStatus: new FormControl('', [Validators.required]),
+      userPassword: new FormControl('', [Validators.required, Validators.maxLength(14), Validators.minLength(8)])
     });
   }
-  public hasError = (controlName: string, errorName: string) =>{
+  public hasError = (controlName: string, errorName: string) => {
     return this.userForm.controls[controlName].hasError(errorName);
   }
 

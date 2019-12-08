@@ -1,13 +1,12 @@
+import { Constants } from 'src/app/layout/stubdata/Constants';
+import { UserIfaceImplService } from './impl/user-iface-impl.service';
 import { AccessDeniedComponent } from './../access-denied/access-denied.component';
 import { JwtTokenService } from './../token/jwt-token.service';
 import { CreateUserComponent } from './create-user/create-user.component';
-import { Constants } from './../stubdata/Constants';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { UserDTO } from '../modal/UserDTO';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-user-management',
@@ -16,15 +15,18 @@ import { element } from 'protractor';
 })
 export class UserManagementComponent implements OnInit {
 
-  constructor(private http: HttpClient, private dialog: MatDialog, private jwtService: JwtTokenService) { }
+  constructor(private userService: UserIfaceImplService, private dialog: MatDialog,
+              private jwtService: JwtTokenService) { }
 
   dataLength ;
 
-  hasAccessToAdd;
+  hasAccessToAdd = this.jwtService.hasAccessToAdd;
 
-  hasAccessToDelete;
+  hasAccessToView = this.jwtService.hasAccessToView;
 
-  hasAccessToEdit;
+  hasAccessToDelete = this.jwtService.hasAccessToDelete;
+
+  hasAccessToEdit = this.jwtService.hasAccessToEdit;
 
     displayedColumns = ['id', 'name', 'email', 'passwordStatus', 'accountNonExpired', 'accountNonLocked', 'active', 'actions'];
     dataSource: MatTableDataSource<UserDTO>;
@@ -39,37 +41,24 @@ export class UserManagementComponent implements OnInit {
 
   ngOnInit() {
     // checking the scrole and access
-    const jsonToken = this.jwtService.getToken();
-    let hasAccess = false;
-    if (jsonToken !== undefined) {
-      for (const key of jsonToken.authorities) {
-        if (key === 'READ') {
-          hasAccess = true;
-          break;
-        }
-      }
-      jsonToken.scope.forEach(element => {
-        if (element === 'WRITE') {
-          this.hasAccessToAdd = true;
-        } else if (element === 'DELETE') {
-          this.hasAccessToDelete = true;
-        } else if (element === 'UPDATE') {
-          this.hasAccessToEdit = true;
-        }
-      });
-    }
-    if (hasAccess) {
+    if (this.hasAccessToView) {
       this.fetchAllUsers();
+      if (this.dataSource !== undefined) {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.dataLength = this.dataSource.data.length;
+      }
     } else {
       this.accessDeniedPopUp();
     }
   }
 
   fetchAllUsers() {
-    this.dataSource = new MatTableDataSource(Constants.userData);
+    this.userService.retriveAllUsers().subscribe(
+      (userList: UserDTO[]) => {
+        this.dataSource = new MatTableDataSource(userList);
+      }
+    );
   }
 
   // dailog Modal for add and user operations
