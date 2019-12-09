@@ -17,8 +17,11 @@ export class CommonErrorInterceptorService implements HttpInterceptor {
       if (err.status === 400) {
         console.log(err.error.message);
         error = err.error.message || err.error.error_description;
-        this.showToastMessage();
-      } else if (err.status === 0) {
+        // this.showToastMessage();
+        this.openToastMessage(error);
+      } else if (err.status === 404) {
+        this.openToastMessage('Server Does not found Path !, Please check server team ');
+      } else if (err.status === 0 || err.status === 500) {
         this.openToastMessage('Server Not Responding!, Please check server status ');
       }
       return throwError(error);
@@ -28,7 +31,7 @@ export class CommonErrorInterceptorService implements HttpInterceptor {
   constructor(private snackBar: MatSnackBar) { }
 
   showToastMessage() {
-    this.snackBar.openFromComponent(ToastMessageComponent,{
+    this.snackBar.openFromComponent(ToastMessageComponent, {
       duration: 2000,
       panelClass: [ 'mat-toolbar', 'mat-warn' ]
     });

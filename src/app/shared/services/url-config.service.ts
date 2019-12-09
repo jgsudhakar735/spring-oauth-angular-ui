@@ -16,7 +16,10 @@ export class UrlConfigService {
   ['saveRole', this.baseUrl + 'role/1.0/saveRole'],
   ['updateRole', this.baseUrl + 'role/1.0/updateRole'],
   ['deleteRole', this.baseUrl + 'role/1.0/deleteRole'],
-  ['permissionList', this.baseUrl + 'permission/1.0/permissionList']
+  ['permissionList', this.baseUrl + 'permission/1.0/permissionList'],
+  ['savePermission', this.baseUrl + 'permission/1.0/savePermission'],
+  ['updatePermission', this.baseUrl + 'permission/1.0/updatePermission'],
+  ['deletePermission', this.baseUrl + 'permission/1.0/deletePermission']
   ]);
 
   getUrl(moduleName: string): any {

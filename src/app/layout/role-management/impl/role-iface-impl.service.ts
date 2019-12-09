@@ -27,13 +27,11 @@ export class RoleIfaceImplService implements RoleIfaceService {
   deleteRole(roleIdNum: number) {
     const headers = new HttpHeaders().
     set('Content-Type', 'application/json');
-    const postData = {
-      roleId: roleIdNum
-    };
-    return this.httpService.doPost(this.urlService.getUrl('deleteRole'), postData, headers, null, null).
+    return this.httpService.doDelete(this.urlService.getUrl('deleteRole') + '/' + roleIdNum, headers, null, null).
     pipe(
       map((response) => {
-        return response.body;
+        console.log('Response from Delete Service::', response);
+        return response;
       })
     );
   }

@@ -10,6 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./role-operation.component.scss']
 })
 export class RoleOperationComponent implements OnInit {
+  canEdit = false;
   public roleForm: FormGroup;
   operationType;
   constructor(private dialogRef: MatDialogRef<RoleOperationComponent>,
@@ -23,6 +24,7 @@ export class RoleOperationComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.maxLength(60)]),
       roleDesc: new FormControl('', [Validators.required])
     });
+    this.dataCanEditable();
   }
 
   onCancel(): void {
@@ -47,11 +49,19 @@ export class RoleOperationComponent implements OnInit {
         this.roleService.deleteRole(formData.roleId).subscribe(
           res => {
             console.log('Deleted Role Data:', res);
-            if (res.roleId != null ) {
+            if (res != null ) {
               this.onCancel();
             }
           }
           );
       }
+  }
+
+  dataCanEditable() {
+    if (this.operationType === 'Edit') {
+      this.canEdit = false;
+    } else {
+      this.canEdit = true;
+    }
   }
 }

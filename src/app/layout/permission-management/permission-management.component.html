@@ -1,9 +1,9 @@
 <div class="search-div">
-    <button mat-raised-button color="primary" (click)="openDailog('Add')" *ngIf = "hasAccessToAdd">
+    <button mat-raised-button color="primary" (click)="openDailog('Add',null)" *ngIf = "hasAccessToAdd">
       <mat-icon>add</mat-icon> Permission
     </button>
     <span>&#160;&#160;</span>
-    <button mat-raised-button color="primary" (click)="openDailog('Add')" *ngIf = "hasAccessToAdd">
+    <button mat-raised-button color="primary" (click)="openDailog('Add', null)" *ngIf = "hasAccessToAdd">
         <mat-icon>link</mat-icon> Role
     </button>
     <mat-form-field class="search-form-field">
@@ -28,11 +28,11 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
           <td mat-cell *matCellDef="let element">
-            <button *ngIf="hasAccessToEdit" mat-raised-button color="primary" style="align-content: center;">
+            <button *ngIf="hasAccessToEdit" mat-raised-button color="primary" style="align-content: center;" (click)="openDailog('Edit', element)">
               <mat-icon >edit</mat-icon>
             </button>
-            <span *ngIf= "(hasAccessToEdit && hasAccessToDelete)"> | </span>
-            <button *ngIf= "hasAccessToDelete" mat-raised-button color="warn">
+            <span *ngIf= "(hasAccessToEdit && hasAccessToEdit)"> | </span>
+            <button *ngIf= "hasAccessToDelete" mat-raised-button color="warn" (click)="openDailog('Delete', element)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>

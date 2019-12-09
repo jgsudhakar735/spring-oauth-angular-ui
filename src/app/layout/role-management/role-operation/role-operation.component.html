@@ -15,7 +15,7 @@
               </mat-form-field>
               <span>&#160;&#160;</span>
               <mat-form-field  class="example-full-width">
-                  <input matInput type="text" placeholder="Role Description" formControlName="roleDesc" id="roleDesc" [(ngModel)]="data.roleData.description">
+                  <input matInput type="text" placeholder="Role Description" formControlName="roleDesc" id="roleDesc" [(ngModel)]="data.roleData.description" [readonly]="canEdit">
                   <mat-hint align="end">Not more then 100 characters long.</mat-hint>
                   <mat-error *ngIf="hasError('roleDesc', 'required')">Role Description required</mat-error>
                   <mat-error *ngIf="hasError('roleDesc', 'maxlength')">You have more than 100 characters</mat-error>

@@ -1,3 +1,4 @@
+import { PermissionOperationComponent } from './permission-operation/permission-operation.component';
 import { PermissionIfaceImplService } from './impl/permission-iface-impl.service';
 import { JwtTokenService } from './../token/jwt-token.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -39,8 +40,6 @@ export class PermissionManagementComponent implements OnInit {
 ngOnInit() {
     if (this.jwtToken.hasAccessToView) {
       this.fetchAllPermissions();
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
   } else {
     this.accessDeniedPopUp();
   }
@@ -60,25 +59,34 @@ accessDeniedPopUp(): void {
 }
 
 fetchAllPermissions() {
-  this.permissionService.retriveAllPermission().subscribe(
+  this.permissionService.retriveList().subscribe(
     (permissionList: PermissionDTO[]) => {
       this.dataSource = new MatTableDataSource(permissionList);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }
   );
 }
  // dailog Modal for add and user operations
- openDailog(operation: string): void {
-  console.log(' Dailog box opening ');
+ openDailog(operation: string, rowData: any): void {
   let dialogRef = null;
   if (operation === 'Add') {
     dialogRef = this.dialog.open(CreatePermissionComponent, {
       data: {},
       disableClose: false
     });
+  } else {
+    dialogRef = this.dialog.open(PermissionOperationComponent, {
+      data: {
+        permissionData: rowData,
+        operationType: operation
+      },
+      disableClose: false
+    });
   }
-
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed' + result);
+    this.fetchAllPermissions();
   });
 }
 }
