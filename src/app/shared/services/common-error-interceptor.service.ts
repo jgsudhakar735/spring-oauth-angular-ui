@@ -23,6 +23,9 @@ export class CommonErrorInterceptorService implements HttpInterceptor {
         this.openToastMessage('Server Does not found Path !, Please check server team ');
       } else if (err.status === 0 || err.status === 500) {
         this.openToastMessage('Server Not Responding!, Please check server status ');
+      } else {
+        error = err.error.message || err.error.error_description;
+        this.openToastMessage(error);
       }
       return throwError(error);
     }));

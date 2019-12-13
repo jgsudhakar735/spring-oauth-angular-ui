@@ -1,4 +1,3 @@
-import { RoleDTO } from './../../modal/RoleDTO';
 import { CommonHttpService } from './../../../shared/services/common-http.service';
 import { RoleIfaceService } from './../iface/role-iface.service';
 import { Injectable } from '@angular/core';

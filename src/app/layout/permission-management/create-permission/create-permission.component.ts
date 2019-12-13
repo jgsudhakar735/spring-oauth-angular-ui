@@ -1,7 +1,9 @@
+import { PermissionIfaceImplService } from './../impl/permission-iface-impl.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { CreateUserComponent } from '../../user-management/create-user/create-user.component';
+import { PermissionDTO } from '../../modal/PermissionDTO';
 
 @Component({
   selector: 'app-create-permission',
@@ -11,7 +13,7 @@ import { CreateUserComponent } from '../../user-management/create-user/create-us
 export class CreatePermissionComponent implements OnInit {
   public permissionForm: FormGroup;
 
-  constructor(private dialogRef: MatDialogRef<CreatePermissionComponent>) { }
+  constructor(private dialogRef: MatDialogRef<CreatePermissionComponent>, private permissionService: PermissionIfaceImplService) { }
 
   ngOnInit() {
     this.permissionForm = new FormGroup({
@@ -29,7 +31,19 @@ export class CreatePermissionComponent implements OnInit {
 
   createPermission(formData) {
     console.log('form data: ', formData);
-
+    const permissionData: PermissionDTO = {
+      name: formData.name,
+      description: formData.permissionDesc,
+      action: '',
+      permissionId: null
+    };
+    this.permissionService.save(permissionData).subscribe(
+      res => {
+        if (res.permissionId != null ) {
+        this.onCancel();
+        }
+      }
+    );
   }
 
 }

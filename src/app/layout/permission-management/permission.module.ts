@@ -3,14 +3,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PermissionManagementComponent } from './permission-management.component';
 import { PermissionRoutingModule } from './permission-routing.module';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatButtonModule, MatCardModule, MatIconModule, MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatIconModule, MatTableModule, MatPaginatorModule,
+   MatSortModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 import { StatModule } from '../../shared/modules/stat/stat.module';
 import { CreatePermissionComponent } from './create-permission/create-permission.component';
 import { PermissionOperationComponent } from './permission-operation/permission-operation.component';
+import { PermissionRoleMappingComponent } from './permission-role-mapping/permission-role-mapping.component';
 
 @NgModule({
     imports: [
@@ -34,6 +36,7 @@ import { PermissionOperationComponent } from './permission-operation/permission-
     providers: [
       PermissionIfaceImplService
     ],
-    declarations: [PermissionManagementComponent, CreatePermissionComponent, PermissionOperationComponent]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA ],
+    declarations: [PermissionManagementComponent, CreatePermissionComponent, PermissionOperationComponent, PermissionRoleMappingComponent]
 })
 export class PermissionModule {}

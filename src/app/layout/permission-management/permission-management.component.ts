@@ -1,3 +1,4 @@
+import { PermissionRoleMappingComponent } from './permission-role-mapping/permission-role-mapping.component';
 import { PermissionOperationComponent } from './permission-operation/permission-operation.component';
 import { PermissionIfaceImplService } from './impl/permission-iface-impl.service';
 import { JwtTokenService } from './../token/jwt-token.service';
@@ -73,19 +74,23 @@ fetchAllPermissions() {
   if (operation === 'Add') {
     dialogRef = this.dialog.open(CreatePermissionComponent, {
       data: {},
-      disableClose: false
+      disableClose: true
     });
-  } else {
+  } else if (operation === 'Edit' || operation === 'Delete') {
     dialogRef = this.dialog.open(PermissionOperationComponent, {
       data: {
         permissionData: rowData,
         operationType: operation
       },
-      disableClose: false
+      disableClose: true
+    });
+  } else {
+    dialogRef = this.dialog.open(PermissionRoleMappingComponent, {
+      data: rowData,
+      disableClose: true
     });
   }
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed' + result);
     this.fetchAllPermissions();
   });
 }

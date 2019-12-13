@@ -19,7 +19,8 @@ export class UrlConfigService {
   ['permissionList', this.baseUrl + 'permission/1.0/permissionList'],
   ['savePermission', this.baseUrl + 'permission/1.0/savePermission'],
   ['updatePermission', this.baseUrl + 'permission/1.0/updatePermission'],
-  ['deletePermission', this.baseUrl + 'permission/1.0/deletePermission']
+  ['deletePermission', this.baseUrl + 'permission/1.0/deletePermission'],
+  ['viewPermission', this.baseUrl + 'permission/1.0/retriveRolesByPerId'],
   ]);
 
   getUrl(moduleName: string): any {

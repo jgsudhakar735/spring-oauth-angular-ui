@@ -9,6 +9,15 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class PermissionIfaceImplService implements PermissionIfaceService {
 
+  getRoleMappedToPermission(permissionId: number) {
+    return this.httpService.doGet(this.urlService.getUrl('viewPermission') + '/' + permissionId, null, null, null).
+    pipe(
+      map((response) => {
+        return response.body;
+      })
+    );
+  }
+
   retriveList(): any {
     return this.httpService.doGet(this.urlService.getUrl('permissionList'), null, null, null).
     pipe(
@@ -17,6 +26,7 @@ export class PermissionIfaceImplService implements PermissionIfaceService {
       })
     );
   }
+
   save(data: PermissionDTO) {
     const headers = new HttpHeaders().
     set('Content-Type', 'application/json');

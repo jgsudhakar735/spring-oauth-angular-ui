@@ -72,7 +72,7 @@ export class RoleManagementComponent implements OnInit {
     if (operation === 'Add') {
       dialogRef = this.dialog.open(CreateRoleComponent, {
         data: {},
-        disableClose: false
+        disableClose: true
       });
     } else {
       dialogRef = this.dialog.open(RoleOperationComponent, {
@@ -80,7 +80,7 @@ export class RoleManagementComponent implements OnInit {
           roleData: rowData,
           operationType: operation
         },
-        disableClose: false
+        disableClose: true
       });
     }
     dialogRef.afterClosed().subscribe(result => {

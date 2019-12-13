@@ -7,7 +7,8 @@ import {
     MatListModule,
     MatMenuModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTooltipModule
 } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -29,7 +30,8 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
         MatInputModule,
         MatMenuModule,
         MatListModule,
-        TranslateModule
+        TranslateModule,
+        MatTooltipModule
     ],
     // tslint:disable-next-line:max-line-length
     declarations: [Screen2Component, LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, AccessDeniedComponent ]

@@ -28,13 +28,9 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
           <td mat-cell *matCellDef="let element">
-            <button *ngIf="hasAccessToEdit" mat-raised-button color="primary" style="align-content: center;" (click)="openDailog('Edit', element)">
-              <mat-icon >edit</mat-icon>
-            </button>
-            <span *ngIf= "(hasAccessToEdit && hasAccessToEdit)"> | </span>
-            <button *ngIf= "hasAccessToDelete" mat-raised-button color="warn" (click)="openDailog('Delete', element)">
-              <mat-icon>delete</mat-icon>
-            </button>
+              <mat-icon matTooltip="Edit" *ngIf="hasAccessToEdit" color="primary" (click)="openDailog('Edit', element)">edit</mat-icon>
+              <mat-icon *ngIf= "hasAccessToDelete" (click)="openDailog('Delete', element)" color="warn">delete</mat-icon>
+              <mat-icon (click)="openDailog('View', element)" color="primary">search</mat-icon>
           </td>
       </ng-container>
         <ng-container matColumnDef="loading">
