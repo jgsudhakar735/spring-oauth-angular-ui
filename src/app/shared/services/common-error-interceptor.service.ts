@@ -11,14 +11,14 @@ import { MatSnackBar } from '@angular/material';
 export class CommonErrorInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(catchError( err => {
-      console.log('Error::', err.status);
-      console.log('req::', req.url);
       let error;
       if (err.status === 400) {
         console.log(err.error.message);
         error = err.error.message || err.error.error_description;
         // this.showToastMessage();
         this.openToastMessage(error);
+      } else if (err.status === 401) {
+        this.openToastMessage('Session has been timed out Please login again! ');
       } else if (err.status === 404) {
         this.openToastMessage('Server Does not found Path !, Please check server team ');
       } else if (err.status === 0 || err.status === 500) {

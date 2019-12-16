@@ -4,6 +4,7 @@ import { CreatePermissionComponent } from './create-permission/create-permission
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PermissionManagementComponent } from './permission-management.component';
+import { PermissionViewComponent } from './permission-view/permission-view.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,10 @@ const routes: Routes = [
     {
       path: 'permission-role-mapping',
       component: PermissionRoleMappingComponent
+    },
+    {
+      path: 'permission-view',
+      component: PermissionViewComponent
     }
 ];
 

@@ -3,6 +3,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { PermissionDTO } from '../../modal/PermissionDTO';
+import { RoleDTO } from '../../modal/RoleDTO';
 
 @Component({
   selector: 'app-permission-operation',
@@ -10,7 +11,7 @@ import { PermissionDTO } from '../../modal/PermissionDTO';
   styleUrls: ['./permission-operation.component.scss']
 })
 export class PermissionOperationComponent implements OnInit {
-
+  rolesData: RoleDTO[];
   canEdit = false;
   public permissionForm: FormGroup;
   operationType;
@@ -26,6 +27,9 @@ export class PermissionOperationComponent implements OnInit {
       permissionDesc: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.minLength(10)])
     });
     this.dataCanEditable();
+    if (this.operationType === 'View') {
+      this.fetchRolesMappedToPermission();
+    }
   }
 
   onCancel(): void {
@@ -70,5 +74,14 @@ export class PermissionOperationComponent implements OnInit {
     } else {
       this.canEdit = true;
     }
+  }
+
+  fetchRolesMappedToPermission() {
+    console.log('Permission ID :::', this.data.permissionData.permissionId);
+    this.permissionService.getRoleMappedToPermission(this.data.permissionData.permissionId).subscribe(
+      (roleList: RoleDTO[]) => {
+        this.rolesData = roleList;
+      }
+    );
   }
 }

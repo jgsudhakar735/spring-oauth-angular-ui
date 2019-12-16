@@ -1,3 +1,4 @@
+import { LoaderService } from './shared/services/loader.service';
 import { CommonErrorInterceptorService } from './shared/services/common-error-interceptor.service';
 import { CommonInterceptorService } from './shared/services/common-interceptor.service';
 import { CommonHttpService } from './shared/services/common-http.service';
@@ -10,7 +11,8 @@ import {
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +25,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToastMessageComponent } from './toast-message/toast-message.component';
 import { UrlConfigService } from './shared/services/url-config.service';
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderInterceptorService } from './shared/services/loader-interceptor';
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
     /* for development
@@ -35,7 +39,7 @@ export const createTranslateLoader = (http: HttpClient) => {
 };
 
 @NgModule({
-    declarations: [AppComponent, ToastMessageComponent],
+    declarations: [AppComponent, ToastMessageComponent, LoaderComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -46,6 +50,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         OverlayModule,
         HttpClientModule,
         MatSnackBarModule,
+        MatProgressSpinnerModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -57,6 +62,17 @@ export const createTranslateLoader = (http: HttpClient) => {
     providers: [
       CommonHttpService,
       UrlConfigService,
+      LoaderService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: LoaderInterceptorService,
+        multi: true ,
+      },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CommonErrorInterceptorService,
+      multi: true ,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,

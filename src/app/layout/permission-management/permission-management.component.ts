@@ -1,3 +1,4 @@
+import { PermissionViewComponent } from './permission-view/permission-view.component';
 import { PermissionRoleMappingComponent } from './permission-role-mapping/permission-role-mapping.component';
 import { PermissionOperationComponent } from './permission-operation/permission-operation.component';
 import { PermissionIfaceImplService } from './impl/permission-iface-impl.service';
@@ -85,7 +86,7 @@ fetchAllPermissions() {
       disableClose: true
     });
   } else {
-    dialogRef = this.dialog.open(PermissionRoleMappingComponent, {
+    dialogRef = this.dialog.open(PermissionViewComponent, {
       data: rowData,
       disableClose: true
     });

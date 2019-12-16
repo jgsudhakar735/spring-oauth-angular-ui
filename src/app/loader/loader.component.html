@@ -1,0 +1,7 @@
+<div *ngIf="isLoading | async" class="overlay">
+  <div class="center">
+  <!-- Value property will be ignored if we do set the mode as intermediate -->
+     <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" diameter="70" style="margin:0 auto;"></mat-progress-spinner>
+  <!-- <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value"></mat-progress-spinner> -->
+  </div>
+</div>

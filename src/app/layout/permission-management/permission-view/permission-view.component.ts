@@ -1,16 +1,17 @@
-import { RoleDTO } from './../../modal/RoleDTO';
 import { Component, OnInit, Inject } from '@angular/core';
+import { RoleDTO } from '../../modal/RoleDTO';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { PermissionRoleMappingComponent } from '../permission-role-mapping/permission-role-mapping.component';
 import { PermissionDTO } from '../../modal/PermissionDTO';
 import { PermissionIfaceImplService } from '../impl/permission-iface-impl.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-permission-role-mapping',
-  templateUrl: './permission-role-mapping.component.html',
-  styleUrls: ['./permission-role-mapping.component.scss']
+  selector: 'app-permission-view',
+  templateUrl: './permission-view.component.html',
+  styleUrls: ['./permission-view.component.scss']
 })
-export class PermissionRoleMappingComponent implements OnInit {
+export class PermissionViewComponent implements OnInit {
 
   rolesData: RoleDTO[];
   options: FormGroup;
@@ -41,4 +42,6 @@ export class PermissionRoleMappingComponent implements OnInit {
       }
     );
   }
+
+
 }

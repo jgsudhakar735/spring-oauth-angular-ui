@@ -1,0 +1,33 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+        <mat-card-title fxLayoutAlign="center">Permission Details With Roles</mat-card-title>
+        <form [formGroup]="options" autocomplete="off" novalidate (ngSubmit)="processData(options.value)" fxLayout="column wrap"
+      fxLayoutAlign="center center" fxLayoutGap="10px" layout-align="space-between center">
+
+        <mat-card-content>
+          <section class="example-section">
+          <div class="example-full-width">
+            <mat-label class="example-full-width">Permission Name &#160;&#160;&#160;&#160;</mat-label> <mat-label > {{data.name}} </mat-label> <br>
+          </div>
+          </section>
+          <section class="example-section">
+          <div class="example-full-width">
+            <mat-label class="example-full-width">Permission Description </mat-label> <mat-label> {{data.description}}</mat-label>
+          </div>
+        </section>
+        <!-- Here we have to show Roles Linked to Permission -->
+        <div *ngIf="rolesData !== undefined && rolesData.length > 0">
+          <p style="font-size: x-large;color: blue; text-align: left;">Roles Mapped To Pemission</p>
+          <div class="example-full-width" *ngFor="let item of rolesData; let i = index">
+                <mat-label class="example-margin"> {{item.description}} </mat-label>
+              </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <mat-card-actions align="center">
+                <button type="button" mat-raised-button color="primary" (click)="onCancel()">Ok</button>
+            </mat-card-actions>
+        </mat-card-actions>
+        </form>
+      </mat-card>
+  </section>
